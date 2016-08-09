@@ -11,10 +11,19 @@ body {
 	margin: 0 auto;
 }
 
-.numbers {
-	font-family: 'Abril Fatface', cursive;
-	font-family: 'Ultra', serif;
-	font-family: 'Bowlby One SC', cursive;
+/* Text formatting */
+.big-number {
+	display: block;
+	color: $light-grey;
+	font-family: $display;
+	font-size: 3.6rem;
+	line-height: 1;
+	text-align: center;
+}
+
+.label {
+	color: $dark-grey;
+	font-size: 0.9rem;
 }
 
 /* Widgets */
@@ -63,16 +72,26 @@ body {
 			right: 0;
 			z-index: 1;
 		}
-	}
 
-	.due-date h3 {
-		background: $white;
-		color: $red;
-		display: inline-block;
-		margin: 0 auto;
-		padding: 0 5px;
-		position: relative;
-		margin-bottom: $gutter/2;
-		z-index: 10;
-	}
+		h3 {
+			background: $white;
+			color: $red;
+			display: inline-block;
+			margin: 0 auto;
+			padding: 0 5px;
+			position: relative;
+			margin-bottom: $gutter/2;
+			z-index: 10;
+		}
+
+		.date,
+		.days-remaining {
+			display: inline-block;
+			width: 40%;
+		}
+
+		.big-number {
+			margin-bottom: -0.5rem;
+		}
+	} // .due-date
 }

@@ -7,10 +7,18 @@ body {
   max-width: 1040px;
   margin: 0 auto; }
 
-.numbers {
-  font-family: 'Abril Fatface', cursive;
-  font-family: 'Ultra', serif;
-  font-family: 'Bowlby One SC', cursive; }
+/* Text formatting */
+.big-number {
+  display: block;
+  color: #CFCFCF;
+  font-family: "Abril Fatface", "Ultra", "Bowlby One SC", serif;
+  font-size: 3.6rem;
+  line-height: 1;
+  text-align: center; }
+
+.label {
+  color: #4A4A4A;
+  font-size: 0.9rem; }
 
 /* Widgets */
 .widget {
@@ -52,15 +60,20 @@ body {
     left: 0;
     right: 0;
     z-index: 1; }
-
-.current-milestone .due-date h3 {
-  background: #fff;
-  color: #C94945;
-  display: inline-block;
-  margin: 0 auto;
-  padding: 0 5px;
-  position: relative;
-  margin-bottom: 5px;
-  z-index: 10; }
+  .current-milestone .due-date h3 {
+    background: #fff;
+    color: #C94945;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 5px;
+    position: relative;
+    margin-bottom: 5px;
+    z-index: 10; }
+  .current-milestone .due-date .date,
+  .current-milestone .due-date .days-remaining {
+    display: inline-block;
+    width: 40%; }
+  .current-milestone .due-date .big-number {
+    margin-bottom: -0.5rem; }
 
 /*# sourceMappingURL=style.css.map */

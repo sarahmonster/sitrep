@@ -64,15 +64,16 @@ function show_current_milestone( $user, $repo ) {
 			// Output due date. ?>
 			<div class="due-date">
 				<h3>Due</h3>
+				<div class="break"></div>
 
-				<div class="date-due">
-					<span class="day"><?php echo $current_due_day; ?></span>
-					<span class="day"><?php echo $current_due_month; ?></span>
+				<div class="date">
+					<span class="big-number"><?php echo $current_due_day; ?></span>
+					<span class="label"><?php echo $current_due_month; ?></span>
 				</div>
 
 				<div class="days-remaining">
-					<span class="day"><?php echo $current_days_remaining; ?></span>
-					<span class="month">Days remaining</span>
+					<span class="big-number"><?php echo $current_days_remaining; ?></span>
+					<span class="label">Days remaining</span>
 				</div>
 			</div>
 		<?php endif; // Check for existence of due date ?>
