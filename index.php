@@ -3,24 +3,90 @@
 require_once 'vendor/autoload.php';
 
 // List all our repos.
-function show_available_repos( $github_user ) {
+function show_available_repos( $user ) {
 	$client = new \Github\Client();
-	$repositories = $client->api( 'user' )->repositories( $github_user );
-	$return = '<dl>';
+	$repositories = $client->api( 'user' )->repositories( $user );
+	echo '<dl>';
 	foreach ( $repositories as $repository ) :
-		$return .= '<dt><a href="?repo=' . $repository['full_name'] . '">' . $repository['name'] . '</a></dt>';
-		$return .= '<dd>' . $repository['description'] . '<dd>';
+		echo '<dt><a href="?repo=' . $repository['full_name'] . '">' . $repository['name'] . '</a></dt>';
+		echo '<dd>' . $repository['description'] . '<dd>';
 	endforeach;
-	$return .= '</dl>';
-	echo $return;
-	return true;
+	echo '</dl>';
 }
+
+// Get project milestones.
+function show_milestones( $user, $repo ) {
+	$client = new \Github\Client();
+	$milestones = $client->api( 'repo' )->milestones( $user, $repo );
+
+	/*// List all milestones.
+	foreach ( $milestones as $milestone ) :
+		echo '<dt><a href="' . $milestone['html_url'] . '">' . $milestone['title'] . '</a></dt>';
+		echo '<dd>' . $milestone['description'] . '<dd>';
+		echo $milestone['state'];
+		echo $milestone['due_on'];
+	endforeach;*/
+
+	// Set current milestone.
+	// We're assuming the current milestone is the one with the nearest due date; ie, the first result returned.
+	// @todo: Make this smarter.
+	$current_milestone = $milestones[0]; ?>
+
+	<div class="widget current-milestone">
+		<h2>Current milestone</h2>
+		<h3><a title="<?php echo $current_milestone['description']; ?>" href="<?php echo $current_milestone['html_url']; ?>">
+			<?php echo $current_milestone['title']; ?></a>
+		</h3>
+
+		<?php // Calculate percent complete.
+		$total_issues = $current_milestone['open_issues'] + $current_milestone['closed_issues'];
+		$percent_done = round( 100*( $current_milestone['closed_issues'] / $total_issues ), 0 );
+
+		// Output percent complete. ?>
+		<?php echo $percent_done; ?>% complete
+
+		<?php
+		if ( $current_milestone['due_on'] ) :
+			// Get the current milestone's due date.
+			$current_due_day = date( 'd', strtotime( $current_milestone['due_on'] ) );
+			$current_due_month = date( 'F Y', strtotime( $current_milestone['due_on'] ) );
+
+			// Calculate days remaining.
+			$current_due_date = date_create( $current_milestone['due_on'] );
+			$today = date_create();
+			$current_interval = date_diff( $current_due_date, $today );
+			$current_days_remaining = $current_interval->format( '%a' );
+
+			// Output due date. ?>
+			<h3>Due</h3>
+
+			<div class="due-date">
+				<span class="day"><?php echo $current_due_day; ?></span>
+				<span class="day"><?php echo $current_due_month; ?></span>
+			</div>
+
+			<div class="days-remaining">
+				<span class="day"><?php echo $current_days_remaining; ?></span>
+				<span class="month">Days remaining</span>
+			</div>
+		<?php endif; // Check for existence of due date ?>
+
+	</div><!-- .widget .current-milestone -->
+<?php }
 
 // Select the repo as entered via the URL.
 $_REQUEST = array_merge( $_GET, $_POST );
+
+
 if ( isset( $_REQUEST['repo'] ) ) :
-	echo "Here is my repo stuff!";
-else : ?>
-	<h2>First, choose a project.</h2>
-	<?php show_available_repos( 'a8cteam51' ); ?>
-<?php endif;
+	// Show us a status page for our project.
+	$repo = explode( '/', $_REQUEST['repo'] );
+
+	// Show milestones.
+	show_milestones( $repo[0], $repo[1] );
+
+else :
+	// Otherwise, show a list of public repos.
+	echo '<h2>First, choose a project.</h2>';
+	show_available_repos( 'a8cteam51' );
+endif;
