@@ -47,7 +47,10 @@ function show_current_milestone( $user, $repo ) {
 		$percent_done = round( 100*( $current_milestone['closed_issues'] / $total_issues ), 0 );
 
 		// Output percent complete. ?>
-		<?php echo $percent_done; ?>% complete
+		<div class="percent-complete">
+			<span class="big-number"><?php echo $percent_done; ?><sup>%</sup></span>
+			<span class="label">complete</span>
+		</div>
 
 		<?php
 		if ( $current_milestone['due_on'] ) :
