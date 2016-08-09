@@ -1,0 +1,78 @@
+@import "variables";
+
+/* Basic structure */
+body {
+	background: $light-grey;
+	font-family: $sans-serif;
+}
+
+#page {
+	max-width: $max-width;
+	margin: 0 auto;
+}
+
+.numbers {
+	font-family: 'Abril Fatface', cursive;
+	font-family: 'Ultra', serif;
+	font-family: 'Bowlby One SC', cursive;
+}
+
+/* Widgets */
+.widget {
+	background: $white;
+	max-width: 300px;
+	padding: 30px $gutter $gutter;
+	position: relative;
+}
+
+.widget-title {
+	background: $dark-grey;
+	color: $white;
+	font-size: 0.9rem;
+	letter-spacing: 1px;
+	position: absolute;
+	top: -12px;
+	left: 0;
+	right: 0;
+	padding: 8px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.widget h3 {
+	text-align: center;
+	font-size: 0.9rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+/* Current milestone widget */
+.current-milestone {
+	.due-date {
+		position: relative;
+		text-align: center;
+
+		&::before {
+			background: $red;
+			content: '';
+			display: block;
+			height: 1px;
+			position: absolute;
+			top: 9px;
+			left: 0;
+			right: 0;
+			z-index: 1;
+		}
+	}
+
+	.due-date h3 {
+		background: $white;
+		color: $red;
+		display: inline-block;
+		margin: 0 auto;
+		padding: 0 5px;
+		position: relative;
+		margin-bottom: $gutter/2;
+		z-index: 10;
+	}
+}

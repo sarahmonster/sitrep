@@ -1,0 +1,29 @@
+{
+  "name": "sitrep",
+  "version": "1.0.0",
+  "description": "Status page for Github projects.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-csscomb": "^3.0.7",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahmonster/sitrep.git"
+  },
+  "author": "sarahmonster",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sarahmonster/sitrep/issues"
+  },
+  "homepage": "https://github.com/sarahmonster/sitrep#readme"
+}
