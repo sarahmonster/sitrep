@@ -83,3 +83,34 @@ function show_current_milestone( $user, $repo ) {
 
 	</div><!-- .widget .current-milestone -->
 <?php }
+
+/**
+ * Display upcoming milestones.
+ * We're assuming the current milestone is the one that follows the current mileston:
+ * the second result returned when fetching milestones.
+ *
+ * @todo: Make this smarter.
+ * @params $user string $repo string
+ */
+function show_upcoming_milestones( $user, $repo ) {
+	$client = new \Github\Client();
+	$milestones = $client->api( 'repo' )->milestones( $user, $repo );
+
+	// List all upcoming milestones.
+	if ( 1 < count( $milestones ) ) : ?>
+		<div class="widget upcoming-milestones">
+			<h2 class="widget-title">Upcoming milestones</h2>
+			<ul>
+			<?php foreach ( $milestones as $milestone ): ?>
+				<li><a title="<?php echo $milestone['description']; ?>" href="<?php echo $milestone['html_url']; ?>">
+					<?php echo $milestone['title']; ?></a>
+
+				<?php if ( $milestone['due_on'] ) : ?>
+					due <span class="due-date"><?php echo date( 'd F Y', strtotime( $milestone['due_on'] ) ); ?></span>
+				<?php endif; // Check for existence of due date ?>
+			</li>
+			<?php endforeach; ?>
+			</ul>
+		</div><!-- .widget .upcoming-milestones -->
+	<?php endif; // Check for existence of next milestone.
+}

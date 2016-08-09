@@ -31,6 +31,7 @@
 		// Show current milestone.
 		include( 'inc/milestones.php' );
 		show_current_milestone( $repo[0], $repo[1] );
+		show_upcoming_milestones( $repo[0], $repo[1] );
 
 	else :
 		// Otherwise, show a list of public repos.

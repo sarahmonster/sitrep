@@ -11,6 +11,16 @@ body {
 	margin: 0 auto;
 }
 
+/* Links */
+a {
+	color: $blue;
+	text-decoration: none;
+
+	&::hover {
+		color: darken( $blue, 10% );
+	}
+}
+
 /* Text formatting */
 .big-number {
 	display: block;
@@ -35,8 +45,9 @@ body {
 /* Widgets */
 .widget {
 	background: $white;
+	margin: $gutter;
 	max-width: 300px;
-	padding: 30px $gutter $gutter;
+	padding: $gutter*2 $gutter $gutter/2;
 	position: relative;
 }
 
@@ -61,6 +72,22 @@ body {
 	text-transform: uppercase;
 }
 
+.widget ul {
+	font-size: 0.9rem;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+
+	li {
+		border-bottom: 1px solid $light-grey;
+		padding: $gutter/2 0;
+		
+		&:last-of-type {
+			border-bottom: none;
+		}
+	}
+}
+
 /* Current milestone widget */
 .current-milestone .percent-complete {
 	background: $white;
@@ -83,7 +110,7 @@ body {
 		display: block;
 		height: 1px;
 		position: absolute;
-		top: 9px;
+		top: 19px;
 		left: 0;
 		right: 0;
 		z-index: 1;
@@ -96,7 +123,7 @@ body {
 		margin: 0 auto;
 		padding: 0 5px;
 		position: relative;
-		margin-bottom: $gutter/2;
+		margin: $gutter/2;
 		z-index: 10;
 	}
 
