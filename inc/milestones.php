@@ -37,8 +37,8 @@ function show_current_milestone( $user, $repo ) {
 	$current_milestone = $milestones[0]; ?>
 
 	<div class="widget current-milestone">
-		<h2>Current milestone</h2>
-		<h3><a title="<?php echo $current_milestone['description']; ?>" href="<?php echo $current_milestone['html_url']; ?>">
+		<h2 class="widget-title">Current milestone</h2>
+		<h3 class="current-milestone-title"><a title="<?php echo $current_milestone['description']; ?>" href="<?php echo $current_milestone['html_url']; ?>">
 			<?php echo $current_milestone['title']; ?></a>
 		</h3>
 
@@ -62,16 +62,18 @@ function show_current_milestone( $user, $repo ) {
 			$current_days_remaining = $current_interval->format( '%a' );
 
 			// Output due date. ?>
-			<h3>Due</h3>
-
 			<div class="due-date">
-				<span class="day"><?php echo $current_due_day; ?></span>
-				<span class="day"><?php echo $current_due_month; ?></span>
-			</div>
+				<h3>Due</h3>
 
-			<div class="days-remaining">
-				<span class="day"><?php echo $current_days_remaining; ?></span>
-				<span class="month">Days remaining</span>
+				<div class="date-due">
+					<span class="day"><?php echo $current_due_day; ?></span>
+					<span class="day"><?php echo $current_due_month; ?></span>
+				</div>
+
+				<div class="days-remaining">
+					<span class="day"><?php echo $current_days_remaining; ?></span>
+					<span class="month">Days remaining</span>
+				</div>
 			</div>
 		<?php endif; // Check for existence of due date ?>
 

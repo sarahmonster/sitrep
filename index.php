@@ -17,25 +17,29 @@
 </head>
 
 <body>
-<?php
-// Select the repo as entered via the URL.
-$_REQUEST = array_merge( $_GET, $_POST );
+	<div id="page">
 
-if ( isset( $_REQUEST['repo'] ) ) :
-	// Show us a status page for our project.
+	<?php
+	// Select the repo as entered via the URL.
+	$_REQUEST = array_merge( $_GET, $_POST );
 
-	$repo = explode( '/', $_REQUEST['repo'] );
+	if ( isset( $_REQUEST['repo'] ) ) :
+		// Show us a status page for our project.
 
-	// Show current milestone.
-	include( 'inc/milestones.php' );
-	show_current_milestone( $repo[0], $repo[1] );
+		$repo = explode( '/', $_REQUEST['repo'] );
 
-else :
-	// Otherwise, show a list of public repos.
-	echo '<h2>First, choose a project.</h2>';
-	include( 'inc/repositories.php' );
-	show_available_repos( 'a8cteam51' );
-endif; ?>
+		// Show current milestone.
+		include( 'inc/milestones.php' );
+		show_current_milestone( $repo[0], $repo[1] );
+
+	else :
+		// Otherwise, show a list of public repos.
+		echo '<h2>First, choose a project.</h2>';
+		include( 'inc/repositories.php' );
+		show_available_repos( 'a8cteam51' );
+	endif; ?>
+
+</div><!-- #page -->
 
 </body>
 </html>
