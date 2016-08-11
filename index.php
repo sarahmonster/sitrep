@@ -33,6 +33,10 @@
 		show_current_milestone( $repo[0], $repo[1] );
 		show_upcoming_milestones( $repo[0], $repo[1] );
 
+		// Show recent activity.
+		include( 'inc/activity.php' );
+		show_activity_feed( $repo[0], $repo[1] );
+
 	else :
 		// Otherwise, show a list of public repos.
 		echo '<h2>First, choose a project.</h2>';
