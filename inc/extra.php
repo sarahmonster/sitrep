@@ -3,7 +3,6 @@
  * Extra functions that can be commonly used by all other files.
  */
 
-
  /**
   * Display a relative time/date.
   * "4 hours ago", "3 weeks ago", etc.
@@ -40,4 +39,28 @@ function relative_date( $date ) {
 	$string = array_slice( $string, 0, 1 );
 
 	return $string ? implode( ', ', $string ) . ' ago' : 'just now';
+}
+
+/**
+ * Check to see if a date is within a specified period.
+ * @params $date datestring in any supported format $period string
+ * http://www.php.net/manual/en/datetime.formats.php
+ */
+function is_in_date_period( $date, $period ) {
+
+	if ( 'day' === $period ) :
+		$offset = '-1 day';
+	elseif ( 'week' === $period ) :
+		$offset = '-7 day';
+	elseif ( 'month' === $period ) :
+		$offset = '-1 month';
+	elseif ( 'year' === $period ) :
+		$offset = '-1 year';
+	endif;
+
+	if( strtotime( $date ) > strtotime( $offset ) ) :
+		return true;
+	else :
+		return false;
+	endif;
 }

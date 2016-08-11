@@ -50,6 +50,18 @@
 			?>
 		</div>
 
+		<div class="widget progress">
+			<h2 class="widget-title">Progress this week</h2>
+
+			<div class="badge number-commits">
+				<span class="big-number">
+					<?php number_commits( $repo[0], $repo[1], 'week' ); ?>
+				</span>
+				<span class="label">commits</span>
+			</div>
+
+		</div><!-- .widget .progress -->
+
 	<?php else :
 		// Otherwise, show a list of public repos.
 		echo '<h2>First, choose a project.</h2>';

@@ -4,6 +4,29 @@
  * Stuff like commits, comments, etc.
  */
 
+ /**
+  * Get number of commits made this week.
+  * @params $user string $repo string $period string
+  */
+ function number_commits( $user, $repo, $period = 'week' ) {
+	$client = new \Github\Client();
+	$commits = $client->api( 'repo' )->commits()->all( $user, $repo, array('sha' => 'master' ) );
+
+	$commitcount = 0;
+
+	// Cycle through each commit. If it was made in the specified period,
+	// increment our count by one. A bit hacky, but it works.
+	// Note: might not work if there are a lot of commits—I'm not sure the API gets *everything*.
+	foreach ( $commits as $commit ) :
+		if ( is_in_date_period( $commit['commit']['committer']['date'], $period ) ) :
+			$commitcount++;
+		else :
+			break;
+		endif;
+	endforeach;
+
+	echo $commitcount;
+ }
 
  /**
   * Display a list of most recent activity.
