@@ -31,16 +31,26 @@
 
 		$repo = explode( '/', $_REQUEST['repo'] );
 
-		// Show current milestone.
-		include( 'inc/milestones.php' );
-		show_current_milestone( $repo[0], $repo[1] );
-		show_upcoming_milestones( $repo[0], $repo[1] );
+		?>
 
-		// Show recent activity.
-		include( 'inc/activity.php' );
-		show_activity_feed( $repo[0], $repo[1] );
+		<div class="milestones">
+			<?php
+			// Show current and upcoming milestones.
+			include( 'inc/milestones.php' );
+			show_current_milestone( $repo[0], $repo[1] );
+			show_upcoming_milestones( $repo[0], $repo[1] );
+			?>
+		</div>
 
-	else :
+		<div class="activity">
+			<?php
+			// Show recent activity.
+			include( 'inc/activity.php' );
+			show_activity_feed( $repo[0], $repo[1] );
+			?>
+		</div>
+
+	<?php else :
 		// Otherwise, show a list of public repos.
 		echo '<h2>First, choose a project.</h2>';
 		include( 'inc/repositories.php' );

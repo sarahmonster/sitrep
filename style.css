@@ -7,6 +7,17 @@ body {
   max-width: 1040px;
   margin: 0 auto; }
 
+@media screen and (min-width: 640px) {
+  .milestones {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%; }
+  .activity {
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: top;
+    width: calc(60% - 20px - 4px); } }
+
 /* Links */
 a {
   color: #6DBCCE;
@@ -34,8 +45,7 @@ a {
 /* Widgets */
 .widget {
   background: #fff;
-  margin: 20px;
-  max-width: 300px;
+  margin: 20px 0;
   padding: 40px 20px 10px;
   position: relative; }
 

@@ -11,6 +11,22 @@ body {
 	margin: 0 auto;
 }
 
+// For tablets and larger, arrange widgets in two columns.
+@media screen and (min-width: 640px) {
+	.milestones {
+		display: inline-block;
+		vertical-align: top;
+		width: 40%;
+	}
+
+	.activity {
+		display: inline-block;
+		padding-left: $gutter;
+		vertical-align: top;
+		width: calc(60% - #{$gutter} - 4px);
+	}
+}
+
 /* Links */
 a {
 	color: $blue;
@@ -45,8 +61,7 @@ a {
 /* Widgets */
 .widget {
 	background: $white;
-	margin: $gutter;
-	max-width: 300px;
+	margin: $gutter 0;
 	padding: $gutter*2 $gutter $gutter/2;
 	position: relative;
 }
@@ -81,7 +96,7 @@ a {
 	li {
 		border-bottom: 1px solid $light-grey;
 		padding: $gutter/2 0;
-		
+
 		&:last-of-type {
 			border-bottom: none;
 		}
