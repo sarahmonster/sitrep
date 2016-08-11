@@ -25,7 +25,7 @@ function show_activity_feed( $user, $repo, $number = 10 ) {
 			'type'   => 'commit',
 			'name'   => '<a href="' . $commit['committer']['html_url'] . '">' . $commit['commit']['committer']['name'] . '</a>',
 			'action' => ' committed <a href="' . $commit['html_url'] . '">' . substr( $commit['sha'], 0, 7 ) . '</a>',
-			'date'   => $commit['commit']['committer']['date'],
+			'date'   => relative_date( $commit['commit']['committer']['date'] ),
 			'detail' => $commit['commit']['message']
 		);
 	endforeach;
