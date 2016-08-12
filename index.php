@@ -60,6 +60,20 @@
 				<span class="label">commits</span>
 			</div>
 
+			<div class="badge issues-opened">
+				<span class="big-number">
+					<?php number_issues( $repo[0], $repo[1], 'week', 'opened' ); ?>
+				</span>
+				<span class="label">issues opened</span>
+			</div>
+
+			<div class="badge issues-closed">
+				<span class="big-number">
+					<?php number_issues( $repo[0], $repo[1], 'week', 'closed' ); ?>
+				</span>
+				<span class="label">issues closed</span>
+			</div>
+
 		</div><!-- .widget .progress -->
 
 	<?php else :

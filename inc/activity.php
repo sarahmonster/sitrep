@@ -5,16 +5,16 @@
  */
 
  /**
-  * Get number of commits made this week.
+  * Get number of commits made within a given timeframe.
   * @params $user string $repo string $period string
   */
  function number_commits( $user, $repo, $period = 'week' ) {
 	$client = new \Github\Client();
-	$commits = $client->api( 'repo' )->commits()->all( $user, $repo, array('sha' => 'master' ) );
+	$commits = $client->api( 'repo' )->commits()->all( $user, $repo, array( 'sha' => 'master' ) );
 
 	$commitcount = 0;
 
-	// Cycle through each commit. If it was made in the specified period,
+	// Cycle through each commit. If it was made within the specified period,
 	// increment our count by one. A bit hacky, but it works.
 	// Note: might not work if there are a lot of commits—I'm not sure the API gets *everything*.
 	foreach ( $commits as $commit ) :
@@ -26,6 +26,44 @@
 	endforeach;
 
 	echo $commitcount;
+ }
+
+ /**
+  * Get number of issues opened or closed within a given timeframe.
+  * @params $user string $repo string $period string
+  */
+ function number_issues( $user, $repo, $period = 'week', $type ) {
+   $client = new \Github\Client();
+
+   if ( 'opened' === $type ) :
+	   $state = 'open';
+	else :
+		$state = 'closed';
+	endif;
+
+   $issues = $client->api( 'issue' )->all( $user, $repo, array( 'state' => $state  ) );
+
+   $issuecount = 0;
+
+   // Cycle through each issue. If it was made within the specified period,
+   // increment our count by one. A bit hacky, but it works.
+   // Note: might not work if there are a lot of commits—I'm not sure the API gets *everything*.
+   foreach ( $issues as $issue ) :
+
+	   if ( 'opened' === $type ) :
+		   $date_of_action = $issue['created_at'];
+		else :
+			$date_of_action = $issue['closed_at'];
+		endif;
+
+	   if ( is_in_date_period( $date_of_action, $period ) ) :
+		   $issuecount++;
+	   else :
+		   break;
+	   endif;
+   endforeach;
+
+   echo $issuecount;
  }
 
  /**

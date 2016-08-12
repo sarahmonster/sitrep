@@ -154,6 +154,8 @@ a {
 
 /* Progress widget */
 .progress .badge {
+	display: inline-block;
+
 	.big-number {
 		color: white;
 	}
@@ -166,4 +168,14 @@ a {
 .number-commits {
 	background-color: $green;
 	border-color: darken($green, 10%);
+}
+
+.issues-opened {
+	background-color: $red;
+	border-color: darken($red, 10%);
+}
+
+.issues-closed {
+	background-color: $blue;
+	border-color: darken($blue, 10%);
 }

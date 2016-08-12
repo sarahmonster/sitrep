@@ -485,14 +485,23 @@ a {
     width: 40%; }
 
 /* Progress widget */
-.progress .badge .big-number {
-  color: white; }
-
-.progress .badge .label {
-  color: white; }
+.progress .badge {
+  display: inline-block; }
+  .progress .badge .big-number {
+    color: white; }
+  .progress .badge .label {
+    color: white; }
 
 .number-commits {
   background-color: #74CB83;
   border-color: #4fbd62; }
+
+.issues-opened {
+  background-color: #C94945;
+  border-color: #aa3531; }
+
+.issues-closed {
+  background-color: #6DBCCE;
+  border-color: #47aac1; }
 
 /*# sourceMappingURL=style.css.map */
